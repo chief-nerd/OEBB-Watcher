@@ -6,8 +6,9 @@
 `yarn install`
 
 # Run
-Run for all commands: `node index.js`  
-Run directly for a specific train: `node index.js monitor RJX169`  
+- Run for all commands: `node index.js`  
+- Run to select a train: `node index.js monitor`  
+- Run directly for a specific train: `node index.js monitor RJX169`  
 
 # Help
 
