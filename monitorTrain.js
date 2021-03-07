@@ -8,7 +8,7 @@ var iconv = require('iconv-lite');
 
 module.exports = async function(train, options = {}) {
 	if(options.interval) options.interval = parseInt(options.interval, 10);
-	else options.interval = 5;
+	else options.interval = 10;
 
 	let monitorTrain = false;
 	let trains = await getAllTrains();
@@ -60,7 +60,7 @@ module.exports = async function(train, options = {}) {
 				term.beep();
 			}
 			
-			term.bold(`\nMonitoring: ^GÖBB ${stats.name}\n\n`);
+			term(`\nMonitoring ÖBB ^G${stats.name}\n\n`);
 
 			if(currentStation) displayStop("Last Stop", lastStop)
 			if(currentStation) displayStop("Next Stop", currentStation, false)
@@ -77,16 +77,19 @@ module.exports = async function(train, options = {}) {
 }
 
 function displayStop(label, station) {
-	term(`${label}:\n`)
-	term(`\t^y${station.name}\n`)
-	if(station.arrTime != station.arrTimeProg)
+	term(`${label}:\n`);
+	term(`\t^y${station.name}\n`);
+	
+	if(station.arrTimeProg && station.arrTime != station.arrTimeProg)
 		term(`\tArriving:  Planned: ^c${station.arrTime}^:, Actual: ^m${station.arrTimeProg}\n`);
 	else 
 		term(`\tArriving: ^c${station.arrTime}\n`);	
-	if(station.depTime != station.depTimeProg)
+
+	if(station.depTimeProg && station.depTime != station.depTimeProg)
 		term(`\tDeparture:  Planned: ^c${station.depTimeProg}^:, Actual: ^m${station.depTimeProg}\n`);
 	else if(station.depTime)
 		term(`\tDeparture: ^c${station.depTime}\n`);	
+
 	if(station.arrTimeProgMinutes > 0) 
 		term.magenta(`\tDelayed by ${station.arrTimeProgMinutes}min\n`);
 
