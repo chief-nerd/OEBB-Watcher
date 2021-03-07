@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 const FuzzySearch = require("fuzzy-search");
-const { terminal } = require("terminal-kit");
+const term = require('terminal-kit').terminal
 const getAllTrains = require("./helpers/getAllTrains");
 const {prompt} = require("./helpers/prompt");
 
@@ -47,19 +47,19 @@ module.exports = async function(train, options = {}) {
 
 
 		if(stats) {
-			terminal.clear();
+			// term.clear();
 			const currentStation = stats.locations[stats.currentLocIndex];
 			const lastStop = stats.locations[stats.locations.length-1];
 			
-			terminal(`\nMonitoring: ^GÖBB ${stats.name}^:\n\n`);
+			term.bold(`\nMonitoring: ^GÖBB ${stats.name}\n\n`);
 
 			displayStop("Next Stop", currentStation)
 			displayStop("Final Stop", lastStop)
 
 			let dateNow = (new Date()).toLocaleString("de-DE");
-			terminal(`Updated: ${dateNow}\n`);
+			term(`Updated: ${dateNow}\n`);
 		} else {
-			terminal.red("Error Updating");
+			term.red("Error Updating");
 		}
 
 		await sleep(options.interval);
@@ -67,12 +67,13 @@ module.exports = async function(train, options = {}) {
 }
 
 function displayStop(label, station) {
-	terminal(`${label}:\n\t^y${station.name}^:\n`)
-	terminal(`\tArriving: ^c${station.arrTimeProg}^:`);
+	term(`${label}:\n`)
+	term(`\t^y${station.name}\n`)
+	term(`\tArriving: ^c${station.arrTimeProg}`);
 	if(station.arrTimeProgMinutes > 0) 
-		terminal.red(`\tDelayed by ${station.arrTimeProgMinutes}min\n`);
+		term.red(`\tDelayed by ${station.arrTimeProgMinutes}min\n`);
 
-	terminal("\n\n");
+	term("\n\n");
 }
 
 function getDate() {
