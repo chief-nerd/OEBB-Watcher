@@ -1,10 +1,13 @@
 ### ÖBB Watcher
 
+![Version 1 Image](screenshots/Version1.png)
+
 # Install
 `yarn install`
 
 # Run
-`node index.js`
+Run for all commands: `node index.js`  
+Run directly for a specific train: `node index.js monitor RJX169`  
 
 # Help
 
