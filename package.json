@@ -19,6 +19,6 @@
   "scripts": {
     "start": "node index.js",
     "install-global": "yarn global add ./",
-    "postversion": "git push --tags"
+    "postversion": "git push origin --tags"
   }
 }
