@@ -1,6 +1,6 @@
 {
   "name": "obb_watcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "author": "JR <jakob.reiter@theventury.com>",
   "license": "MIT",
@@ -13,5 +13,8 @@
     "inquirer": "^8.0.0",
     "inquirer-autocomplete-prompt": "^1.3.0",
     "terminal-kit": "^2.0.5"
+  },
+  "scripts": {
+    "postversion": "git push --tags"
   }
 }
