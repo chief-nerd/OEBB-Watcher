@@ -1,6 +1,6 @@
 ### ÖBB Watcher
 
-![Version 1 Image](screenshots/Version1.png)
+![Version 1 Image](screenshots/Version1.0.3.png)
 
 # Install
 `yarn install`

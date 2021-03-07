@@ -48,13 +48,17 @@ module.exports = async function(train, options = {}) {
 
 		if(stats) {
 			term.clear();
-			const currentStation = stats.locations[stats.currentLocIndex];
-			const lastStop = stats.locations[stats.locations.length-1];
+			let currentStationIndex = stats.locations.findIndex(e => e.currentpos === true);
+
+			currentStation = stats.locations[currentStationIndex];
+			let lastStop = stats.locations[currentStationIndex-1]
+			let finalStop = stats.locations[stats.locations.length-1];
 			
 			term.bold(`\nMonitoring: ^GÖBB ${stats.name}\n\n`);
 
-			displayStop("Next Stop", currentStation)
-			displayStop("Final Stop", lastStop)
+			if(currentStation) displayStop("Last Stop", lastStop)
+			if(currentStation) displayStop("Next Stop", currentStation, false)
+			if(finalStop) displayStop("Final Stop", finalStop)
 
 			let dateNow = (new Date()).toLocaleString("de-DE");
 			term.dim(`Updated: ${dateNow}\n`);
@@ -69,9 +73,16 @@ module.exports = async function(train, options = {}) {
 function displayStop(label, station) {
 	term(`${label}:\n`)
 	term(`\t^y${station.name}\n`)
-	term(`\tArriving: ^c${station.arrTimeProg}\n`);
+	if(station.arrTime != station.arrTimeProg)
+		term(`\tArriving:  Planned: ^c${station.arrTime}^:, Actual: ^m${station.arrTimeProg}\n`);
+	else 
+		term(`\tArriving: ^c${station.arrTime}\n`);	
+	if(station.depTime != station.depTimeProg)
+		term(`\tDeparture:  Planned: ^c${station.depTimeProg}^:, Actual: ^m${station.depTimeProg}\n`);
+	else if(station.depTime)
+		term(`\tDeparture: ^c${station.depTime}\n`);	
 	if(station.arrTimeProgMinutes > 0) 
-		term.red(`\tDelayed by ${station.arrTimeProgMinutes}min\n`);
+		term.magenta(`\tDelayed by ${station.arrTimeProgMinutes}min\n`);
 
 	term("\n");
 }
