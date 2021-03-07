@@ -1,6 +1,6 @@
 {
   "name": "obb_watcher",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "author": "JR <jakob.reiter@theventury.com>",
   "license": "MIT",
