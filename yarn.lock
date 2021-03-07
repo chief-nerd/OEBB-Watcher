@@ -377,9 +377,9 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-term-kit@^2.0.5:
+terminal-kit@^2.0.5:
   version "2.0.5"
-  resolved "https://registry.yarnpkg.com/term-kit/-/term-kit-2.0.5.tgz#1d9a68d8c6918a1e8c652c28ddfe7ac73225449e"
+  resolved "https://registry.yarnpkg.com/terminal-kit/-/terminal-kit-2.0.5.tgz#1d9a68d8c6918a1e8c652c28ddfe7ac73225449e"
   integrity sha512-180DfVQDI97m2EhqQ9zg29rUvDmttkbYYABk5DT0otcSV+NoiDuzAXuz2UQtrpCY6QIvIonmMuBzl01HII8JWA==
   dependencies:
     "@cronvel/get-pixels" "^3.4.0"
