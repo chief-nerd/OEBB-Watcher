@@ -47,7 +47,7 @@ module.exports = async function(train, options = {}) {
 
 
 		if(stats) {
-			// term.clear();
+			term.clear();
 			const currentStation = stats.locations[stats.currentLocIndex];
 			const lastStop = stats.locations[stats.locations.length-1];
 			
