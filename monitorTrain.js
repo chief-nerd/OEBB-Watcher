@@ -36,6 +36,7 @@ module.exports = async function(train, options = {}) {
 
 	const trainQuery = `http://www.zugradar.at/bin/traininfo.exe/dny/${monitorTrain.url}\?tpl\=JourneyDetails\&date\=${getDate()}\&`
 
+	lastStopextId= false;
 	while(true) {
 		let response = await axios.get(trainQuery, { responseType: 'arraybuffer' });
 				let stats = false;
@@ -53,6 +54,11 @@ module.exports = async function(train, options = {}) {
 			currentStation = stats.locations[currentStationIndex];
 			let lastStop = stats.locations[currentStationIndex-1]
 			let finalStop = stats.locations[stats.locations.length-1];
+
+			if(lastStopextId != currentStation.extId) {
+				lastStopextId = currentStation.extId;
+				term.beep();
+			}
 			
 			term.bold(`\nMonitoring: ^GÖBB ${stats.name}\n\n`);
 
