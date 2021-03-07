@@ -57,7 +57,7 @@ module.exports = async function(train, options = {}) {
 			displayStop("Final Stop", lastStop)
 
 			let dateNow = (new Date()).toLocaleString("de-DE");
-			term(`Updated: ${dateNow}\n`);
+			term.dim(`Updated: ${dateNow}\n`);
 		} else {
 			term.red("Error Updating");
 		}
@@ -69,11 +69,11 @@ module.exports = async function(train, options = {}) {
 function displayStop(label, station) {
 	term(`${label}:\n`)
 	term(`\t^y${station.name}\n`)
-	term(`\tArriving: ^c${station.arrTimeProg}`);
+	term(`\tArriving: ^c${station.arrTimeProg}\n`);
 	if(station.arrTimeProgMinutes > 0) 
 		term.red(`\tDelayed by ${station.arrTimeProgMinutes}min\n`);
 
-	term("\n\n");
+	term("\n");
 }
 
 function getDate() {
